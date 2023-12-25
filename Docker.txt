@@ -1,0 +1,16 @@
+FROM python:3.11-alpine
+COPY . /pragathi
+WORKDIR /pragathi
+RUN pip install -r requirements.txt
+EXPOSE 8080
+ENTRYPOINT ["python"]
+CMD ["nov1.py"]
+
+
+sudo docker pull nginx
+pwd(/home/pragathi)
+mkdir html
+cd html
+sudo docker run -d --name mynginx -p 8080:80 -v $(pwd):/usr/share/nginx/html nginx
+echo '<html><body><h1>Hello, Docker!</h1></body></html>' | sudo tee ./index.html
+sudo docker cp ./index.html mynginx:/usr/share/nginx/html/
